@@ -1,0 +1,24 @@
+from os import listdir
+from os.path import join
+
+# Filepaths
+path_pats = '/home/NAS-DNR'
+path_tsvs = '/home/dnr/Documents/data/NeRDD/tsv'
+file_tsv0 = 'MLungren_rad_summ1.tsv'
+file_tsv1 = 'MLungren_rad_summ4.tsv'
+file_tsv2 = 'MLungren_rad_summ9.tsv'
+list_pats = 
+
+# Read in tsvs for acc2lab dictionary.
+acc2lab = {}
+for iter_tsv,file_tsv in enumerate([file_tsv0, file_tsv1, file_tsv2]):
+    path_tsv = join(path_tsvs, file_tsv)
+    tsv = open(path_tsv, 'r')
+    line = tsv.readline()
+    line = tsv.readline()
+    while line:
+        line = line.split('\t')
+        acc2lab[line[3]] = iter_tsv
+        line = tsv.readline()
+
+# Define 
