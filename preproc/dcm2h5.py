@@ -1,5 +1,6 @@
 import dicom
 import h5py
+import numpy as np
 from os import listdir,mkdir
 from os.path import isdir,join
 
@@ -52,6 +53,15 @@ for iter_pat,name_pat in enumerate(list_pats):
             continue
         img = dcm.pixel_array
         lab = acc2lab[acc]
+        # Let's normalize the image.
+        img = img.astype(np.float32)
+        img -= np.mean(img)
+        img /= np.std(img)
+        img = np.clip(img, -3, 3)
+        img += 3
+        img /= 6
+        if dcm.PhotometricInterpretation[-1] == '1':
+            img = 1 - img
         # Saving the image.
         path_acc = join(path_save, acc)
         if not isdir(path_acc):

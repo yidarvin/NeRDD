@@ -56,8 +56,13 @@ for iter_pat,name_pat in enumerate(list_pats):
         lab = acc2lab[acc]
         # Let's normalize the image.
         img = img.astype(np.float32)
-        img -= np.min(img)
-        img /- np.max(img)
+        img -= np.mean(img)
+        img /= np.std(img)
+        img = np.clip(img, -3, 3)
+        img += 3
+        img /= 6
+        if dcm.PhotometricInterpretation[-1] == '1':
+            img = 1 - img
         # Saving the image.
         path_lab = join(path_save, str(lab))
         if not isdir(path_lab):
