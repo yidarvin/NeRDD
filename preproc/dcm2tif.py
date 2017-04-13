@@ -4,11 +4,12 @@ import numpy as np
 from os import listdir,mkdir
 from os.path import isdir,join
 import scipy.misc
+from skimage import exposure
 
 # Filepaths
 path_pats = '/home/NAS-DNR'
-path_save = '/home/dnr/Documents/data/NeRDD/tif'
-path_tsvs = '/home/dnr/Documents/data/NeRDD/tsv'
+path_save = '/media/dnr/Documents/data/NeRDD/tif'
+path_tsvs = '/media/dnr/Documents/data/NeRDD/tsv'
 # Corollaries
 name_tsv0 = 'MLungren_rad_summ1.tsv'
 name_tsv1 = 'MLungren_rad_summ4.tsv'
@@ -56,13 +57,14 @@ for iter_pat,name_pat in enumerate(list_pats):
         lab = acc2lab[acc]
         # Let's normalize the image.
         img = img.astype(np.float32)
-        img -= np.mean(img)
-        img /= np.std(img)
-        img = np.clip(img, -3, 3)
-        img += 3
-        img /= 6
+        img -= np.min(img)
+        img /= np.max(img)
+        #img = np.clip(img, -3, 3)
+        #img += 3
+        #img /= 6
         if dcm.PhotometricInterpretation[-1] == '1':
             img = 1 - img
+        img = exposure.equalize_adapthist(img, clip_limit=0.03)
         # Saving the image.
         path_lab = join(path_save, str(lab))
         if not isdir(path_lab):
