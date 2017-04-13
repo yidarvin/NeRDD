@@ -1,6 +1,6 @@
-declare -r path_train=/home/dnr/Documents/data/NeRDD/h5
+declare -r path_train=/media/dnr/Documents/data/NeRDD/h5
 #declare -r path_test=/home/dnr/Documents/data/NeRDD/testing
-declare -r path_val=/home/dnr/Documents/data/NeRDD/validation
+declare -r path_val=/media/dnr/Documents/data/NeRDD/validation
 #declare -r path_inf=/home/dnr/Documents/data/NeRDD/inference
 
 declare -r name=cxr-class-10000
