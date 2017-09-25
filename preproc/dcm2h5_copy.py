@@ -7,10 +7,10 @@ import scipy.misc
 from skimage import exposure
 
 # Variables
-size = 224
+size = 512
 # Filepaths
-path_pats = '/home/CXR2'
-path_save = '/media/dnr/Documents/data/NeRDD/CXRsmall/training'
+path_pats = '/home/CXR1'
+path_save = '/media/dnr/Documents/data/NeRDD/CXR512/training'
 path_tsvs = '/media/dnr/Documents/data/NeRDD/tsv'
 # Corollaries
 name_tsv0 = 'MLungren_rad_summ1.tsv'
