@@ -6,7 +6,7 @@ declare -r path_val=/media/dnr/Documents/data/NeRDD/CXR224/validation
 # Change the name.  This decides what the model is called.  Very Important.
 # To not bother other people or write over your previous model in a
 # previous experiment, CHANGE THIS.
-declare -r name=CXR224-darvin-res
+declare -r name=CXR224-darvin
 
 # Model path, Log path, figure save path.
 declare -r path_model=/home/dnr/modelState/$name.ckpt
@@ -21,7 +21,7 @@ rm $path_log
 # - GoogLe
 # - Inception
 # - Res
-declare -r network=Res
+declare -r network=Inception
 
 # Hyperparameters
 declare -r learning_rate=0.001
